@@ -6,6 +6,8 @@ import {
   Validators
 } from "@angular/forms";
 import { Http } from "@angular/http";
+import { DropdownService } from '../shared/servicos/dropdown.service';
+import { EstadoBr } from '../shared/models/estado-br.model';
 
 @Component({
   selector: "app-driven",
@@ -14,9 +16,20 @@ import { Http } from "@angular/http";
 })
 export class DrivenComponent implements OnInit {
   formulario: FormGroup;
-  constructor(private formBuilder: FormBuilder, private http: Http) {}
+  estados: EstadoBr[];
+
+
+  constructor(
+    private formBuilder: FormBuilder, 
+    private http: Http,
+      private dropdownService: DropdownService) {}
 
   ngOnInit() {
+    this.dropdownService.getEstadosBr().subscribe(dados=>{
+      this.estados = dados;
+      console.log(dados);
+     } );
+
     this.formulario = this.formBuilder.group({
       nome: [
         "Thassya",
