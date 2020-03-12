@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: "app-template-form",
@@ -17,7 +19,7 @@ export class TemplateFormComponent implements OnInit {
 
   }
 
-  constructor() {}
+  constructor(private http: Http) {}
 
   ngOnInit() {}
   verificaValidTouched(campo){
@@ -31,6 +33,13 @@ export class TemplateFormComponent implements OnInit {
   }
 
   consultaCEP(cep){
-    console.log(cep);
+    cep=cep.replace(/\D/g, '');
+    if(cep != ""){
+      var validacep = /^[0-9]{8}$/;
+       if(validacep.test(cep)) { //
+          this.http.get(`https://viacep.com.br/ws/${cep}/json/`).map(dados=>dados.json())
+          .subscribe((dados)=>{console.log(dados)});
+       }
+    } 
   }
 }
