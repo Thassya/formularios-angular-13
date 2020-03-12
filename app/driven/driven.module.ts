@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpModule } from '@angular/http';
 
 import { DrivenComponent } from "./driven.component";
 import { DrivenService } from "./driven.service";
@@ -10,7 +11,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    HttpModule
   ],
   declarations: [    
     DrivenComponent
