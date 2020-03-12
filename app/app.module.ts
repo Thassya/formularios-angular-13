@@ -1,42 +1,45 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import {Routes,RouterModule} from '@angular/router';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { HttpModule } from "@angular/http";
+import { Routes, RouterModule } from "@angular/router";
 
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { TemplateFormComponent } from './template-form/template-form.component';
-import { ServersComponent } from './servers/servers.component';
-import { EditServerComponent } from './servers/edit-server/edit-server.component';
-import { ServerComponent } from './servers/server/server.component';
-import { ServersService } from './servers/servers.service';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import {AppRoutingModule} from './app-routing.module';
-import {AuthService} from './auth.service';
-import {AuthGuard} from './auth-guard.service';
-import {CanDeactivateGuard} from './servers/edit-server/can-deactivate-guard.service';
-import {ErrorPageComponent} from './error-page/error-page.component';
+import { AppComponent } from "./app.component";
+import { HomeComponent } from "./home/home.component";
+import { ServersComponent } from "./servers/servers.component";
+import { EditServerComponent } from "./servers/edit-server/edit-server.component";
+import { ServerComponent } from "./servers/server/server.component";
+import { ServersService } from "./servers/servers.service";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { TemplateFormModule } from "./template-form/template-form.module";
+
+import { AuthService } from "./auth.service";
+import { AuthGuard } from "./auth-guard.service";
+import { CanDeactivateGuard } from "./servers/edit-server/can-deactivate-guard.service";
+import { ErrorPageComponent } from "./error-page/error-page.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    TemplateFormComponent,
     ServersComponent,
     EditServerComponent,
-    ServerComponent,PageNotFoundComponent,ErrorPageComponent
+    ServerComponent,
+    PageNotFoundComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TemplateFormModule
   ],
-  providers: [ServersService,AuthService,AuthGuard,CanDeactivateGuard],
+  providers: [ServersService, AuthService, AuthGuard, CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
 
 // appRoutes will hold all the routes our application has
 

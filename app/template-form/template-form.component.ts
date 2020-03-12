@@ -7,16 +7,15 @@ import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
   styleUrls: ["./template-form.component.css"]
 })
 export class TemplateFormComponent implements OnInit {
-  
-usuario: any = {
-  nome: 'Thassya',
-  email: 'teste@email.com'
-}
+  usuario: any = {
+    nome: null,
+    email: null
+  };
 
   onSubmit(form) {
     console.log(form);
-    console.log(this.usuario);
-      }
+    
+  }
 
   constructor() {}
 
