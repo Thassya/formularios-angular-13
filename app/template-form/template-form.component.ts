@@ -2,11 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
 
 @Component({
-  selector: "app-users",
-  templateUrl: "./users.component.html",
-  styleUrls: ["./users.component.css"]
+  selector: "app-template-form",
+  templateUrl: "./template-form.component.html",
+  styleUrls: ["./template-form.component.css"]
 })
-export class UsersComponent implements OnInit {
+export class TemplateFormComponent implements OnInit {
   
 usuario: any = {
   nome: 'Thassya',
