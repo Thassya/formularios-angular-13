@@ -48,7 +48,9 @@ export class TemplateFormComponent implements OnInit {
           .map(dados => dados.json())
           .subscribe(dados => {
             this.populaDadosForm(dados, form);
-          });
+          },
+          form.form.reset()
+          );
       }
     }
   }
