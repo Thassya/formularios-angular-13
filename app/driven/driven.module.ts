@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { DrivenComponent } from "./driven.component";
 import { DrivenService } from "./driven.service";
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
