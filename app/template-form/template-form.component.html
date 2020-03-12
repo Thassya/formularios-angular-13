@@ -17,7 +17,11 @@
   <div class="col-sm-12">
     <label for="email">Email</label>
     <input type="email" class="form-control" id="email" name="email" placeholder="nome@email.com"
-  [(ngModel)]="usuario.email" email>
+  [(ngModel)]="usuario.email" email required #email="ngModel">
+  <app-campo-control-erro 
+      [mostrarErro]="verificaValidTouched(email)" 
+      msgErro="email é obrigatório">
+      </app-campo-control-erro>
   </div>
 </div>
 
@@ -26,7 +30,7 @@
   <div class="col-sm-3" [ngClass]="aplicaCssErro(cep)">
     <label for="cep">cep</label>
     <input type="text" class="form-control" id="cep" name="cep" ngModel required #cep="ngModel"
-    (blur)="consultaCEP($event.target.value)">
+    (blur)="consultaCEP($event.target.value, f)">
     <app-campo-control-erro 
       [mostrarErro]="verificaValidTouched(cep)" 
       msgErro="CEP é obrigatório">
@@ -43,21 +47,21 @@
   </div>
   <div class="col-sm-6">
     <label for="complemento">Complemento</label>
-    <input type="text" class="form-control" id="complemento" name="complemento" ngModel>
+    <input type="text" class="form-control" id="complemento" name="complemento" ngModel #complemento="ngModel">
   </div>
 </div>
 
 <div class="form-group">
   <div class="col-sm-12">
     <label for="rua">Rua</label>
-    <input type="text" class="form-control" id="rua" name="rua" disabled>
+    <input type="text" class="form-control" id="rua" name="rua" ngModel required #rua="ngModel" >
   </div>
 </div>
 
 <div class="form-group">
   <div class="col-sm-6" [ngClass]="aplicaCssErro(bairro)">
     <label for="bairro">Bairro</label>
-    <input type="text" class="form-control" id="bairro" name="bairro" ngModel required #bairro="ngModel" disabled>
+    <input type="text" class="form-control" id="bairro" name="bairro" ngModel required #bairro="ngModel" >
     	<app-campo-control-erro 
       [mostrarErro]="verificaValidTouched(bairro)" 
       msgErro="bairro é obrigatório">
@@ -65,15 +69,15 @@
   </div>
   <div class="col-sm-3" [ngClass]="aplicaCssErro(cidade)">
     <label for="cidade">Cidade</label>
-    <input type="text" class="form-control" id="cidade" name="cidade" ngModel required #cidade="ngModel" disabled>
+    <input type="text" class="form-control" id="cidade" name="cidade" ngModel required #cidade="ngModel" >
     <app-campo-control-erro 
       [mostrarErro]="verificaValidTouched(cidade)" 
       msgErro="cidade é obrigatório">
       </app-campo-control-erro>       
   </div>
   <div class="col-sm-3">
-    <label for="estaod">Estado</label>
-    <input type="text" class="form-control" id="estaod" name="estaod" ngModel disabled>
+    <label for="estado">Estado</label>
+    <input type="text" class="form-control" id="estado" name="estado" ngModel required>
   </div>
 </div>
 </div>
