@@ -2,11 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
 
 @Component({
-  selector: 'app-servers',
-  templateUrl: './servers.component.html',
-  styleUrls: ['./servers.component.css']
+  selector: 'app-driven',
+  templateUrl: './driven.component.html',
+  styleUrls: ['./driven.component.css']
 })
-export class ServersComponent implements OnInit {
+export class DrivenComponent implements OnInit {
   formulario: FormGroup;
 
   constructor(
