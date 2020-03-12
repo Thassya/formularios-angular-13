@@ -29,4 +29,8 @@ export class TemplateFormComponent implements OnInit {
       'has-feedback': this.verificaValidTouched(campo)
     }
   }
+
+  consultaCEP(cep){
+    console.log(cep);
+  }
 }
