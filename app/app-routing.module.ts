@@ -4,13 +4,10 @@ import { Routes, RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { TemplateFormComponent } from "./template-form/template-form.component";
-import { ServersComponent } from "./servers/servers.component";
-import { EditServerComponent } from "./servers/edit-server/edit-server.component";
-import { ServerComponent } from "./servers/server/server.component";
-import { ServersService } from "./servers/servers.service";
+import { ServersComponent } from "./driven/servers.component";
+import { ServersService } from "./driven/servers.service";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { AuthGuard } from "./auth-guard.service";
-import { CanDeactivateGuard } from "./servers/edit-server/can-deactivate-guard.service";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent },
@@ -21,15 +18,7 @@ const appRoutes: Routes = [
   {
     path: "driven",
     canActivateChild: [AuthGuard],
-    component: ServersComponent,
-    children: [
-      {
-        path: ":id/edit",
-        canDeactivate: [CanDeactivateGuard],
-        component: EditServerComponent
-      },
-      { path: ":id", component: ServerComponent }
-    ]
+    component: ServersComponent
   },
   { path: "not-found", component: PageNotFoundComponent },
   { path: "**", redirectTo: "/not-found", pathMatch: "full" }
