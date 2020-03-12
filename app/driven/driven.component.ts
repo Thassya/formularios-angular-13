@@ -36,25 +36,41 @@ export class DrivenComponent implements OnInit {
   }
 
   onSubmit() {
-    this.http
-      .post("https://httpbin.org/post", JSON.stringify(this.formulario.value))
-      .map(res => res)
-      .subscribe(
-        dados => {
-          console.log(dados);
-          //reseta form
-          this.resetar();
-        },
-        (error: any) => alert("erro")
-      );
+    if (this.formulario.valid) {
+      this.http
+        .post("https://httpbin.org/post", JSON.stringify(this.formulario.value))
+        .map(res => res)
+        .subscribe(
+          dados => {
+            console.log(dados);
+            //reseta form
+            this.resetar();
+          },
+          (error: any) => alert("erro")
+        );
+    } else {
+      this.verificaValidacoesForm(this.formulario);
+    }
   }
+
+  verificaValidacoesForm(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(campo => {
+      const controle = formGroup.get(campo);
+      controle.markAsDirty();
+      if (controle instanceof FormGroup) {
+        this.verificaValidacoesForm(controle);
+      }
+    });
+  }
+
   resetar() {
     this.formulario.reset();
   }
 
   verificaValidTouched(campo: string) {
     return (
-      !this.formulario.get(campo).valid && this.formulario.get(campo).touched
+      !this.formulario.get(campo).valid &&
+      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
     );
   }
   verificaEmailInvalido() {
@@ -71,27 +87,25 @@ export class DrivenComponent implements OnInit {
     };
   }
   consultaCEP() {
-    let cep = this.formulario.get('endereco.cep').value;    
+    let cep = this.formulario.get("endereco.cep").value;
     cep = cep.replace(/\D/g, "");
     if (cep != "") {
       var validacep = /^[0-9]{8}$/;
       if (validacep.test(cep)) {
-        
         this.limpaFormulario();
 
         this.http
           .get(`https://viacep.com.br/ws/${cep}/json/`)
           .map(dados => dados.json())
           .subscribe(dados => {
-            console.log(dados);          
+            console.log(dados);
             this.populaDadosForm(dados);
-          }           
-          );
+          });
       }
     }
   }
-   limpaFormulario(){
-      this.formulario.patchValue({
+  limpaFormulario() {
+    this.formulario.patchValue({
       endereco: {
         complemento: null,
         rua: null,
@@ -99,7 +113,7 @@ export class DrivenComponent implements OnInit {
         cidade: null,
         estado: null
       }
-    })
+    });
   }
   populaDadosForm(dados) {
     this.formulario.patchValue({
@@ -111,6 +125,6 @@ export class DrivenComponent implements OnInit {
         cidade: dados.localidade,
         estado: dados.uf
       }
-    })
+    });
   }
 }
