@@ -10,17 +10,17 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { AuthGuard } from "./auth-guard.service";
 
 const appRoutes: Routes = [
-  { path: "", component: HomeComponent },
+  // { path: "", component: HomeComponent, redirectTo: "/driven" },
   {
     path: "template",
     component: TemplateFormComponent
   },
   {
     path: "driven",
-    canActivateChild: [AuthGuard],
     component: DrivenComponent
-  },
+  },  
   { path: "not-found", component: PageNotFoundComponent },
+  { path: "", redirectTo: "/driven", pathMatch: "full" },
   { path: "**", redirectTo: "/not-found", pathMatch: "full" }
 ];
 

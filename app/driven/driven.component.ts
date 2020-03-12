@@ -7,6 +7,7 @@ import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
   styleUrls: ['./driven.component.css']
 })
 export class DrivenComponent implements OnInit {
+  
   formulario: FormGroup;
 
   constructor(

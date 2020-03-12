@@ -1,13 +1,12 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { Routes, RouterModule } from "@angular/router";
 
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
-import { DrivenComponent } from "./driven/driven.component";
-import { DrivenService } from "./driven/driven.service";
+import { DrivenModule } from './driven/driven.module';
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { TemplateFormModule } from "./template-form/template-form.module";
@@ -22,18 +21,18 @@ import { ErrorPageComponent } from "./error-page/error-page.component";
   declarations: [
     AppComponent,
     HomeComponent,
-    DrivenComponent,
     PageNotFoundComponent,
     ErrorPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    DrivenModule,
     HttpModule,
     AppRoutingModule,
     TemplateFormModule
   ],
-  providers: [DrivenService, AuthService, AuthGuard ],
+  providers: [AuthService, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

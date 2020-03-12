@@ -1,49 +1,20 @@
-<div class="container">
-	<div class="row">
-		<form>
-      <div class="form-group">
-				<label for="Nome">Nome</label>
-				<input type="text" class="form-control" id="nome" Name="nome" placeholder="nome">				
-			</div>
-			<div class="form-group">
-				<label for="email">Email</label>
-				<input type="email" class="form-control" id="email" Name="email" placeholder="nome@email.com">
-
-			</div>
-			<!-- <div class="form-group">
-				<label for="exampleInputPassword1">Password</label>
-				<input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-				<div class="form-group form-check">
-					<input type="checkbox" class="form-check-input" id="exampleCheck1">
-					<label class="form-check-label" for="exampleCheck1">Check me out</label>
-				</div> -->
-				<button type="submit" class="btn btn-primary">Submit</button>
-		</form>
-	</div>
-</div>
-<!-- 
-<div class="row">
-  <div class="col-xs-12 col-sm-4">
-    <div class="list-group">
-      <a
-        [routerLink]="['/servers',server.id]"
-        [queryParams]="{allowEdit:server.id===3 ? '1' : '0'}"
-        fragment="loading"
-        class="list-group-item"
-        *ngFor="let server of servers">
-        {{ server.name }}
-      </a>
+<form [formGroup]="formulario">
+  <div class="form-group">
+    <div class="col-sm-12">
+      <label for="nome" class="control-label">Nome</label>
+      <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">		
     </div>
   </div>
-  <div class="col-xs-12 col-sm-4">
-    <router-outlet></router-outlet> -->
 
-    <!-- <button class="btn btn-primary">Reload()</button>
-    <app-edit-server></app-edit-server>
-    <hr>
-    <app-server></app-server> -->
-  <!-- </div>
-</div> -->
-<!-- 
-if we want to question whether to edit this component or not we use query params which is property of routerlink -->
+  <div class="form-group">
+    <div class="col-sm-12">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="nome@email.com">
+    </div>
+  </div>
+
+  <div class="col-sm-12"> 
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <app-form-debug [form]="formulario"></app-form-debug>
+  </div>		
+</form>
