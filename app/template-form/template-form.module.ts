@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
 
 import { TemplateFormComponent } from './template-form.component';
+import { FormDebugComponent } from '../form-debug/form-debug.component';
+import { CampoControlErroComponent } from '../campo-control-erro/campo-control-erro.component';
 
 @NgModule({
   imports: [
@@ -10,7 +12,9 @@ import { TemplateFormComponent } from './template-form.component';
     FormsModule
   ],
   declarations: [
-    TemplateFormComponent
+    TemplateFormComponent,
+    FormDebugComponent,    
+    CampoControlErroComponent
   ]
 })
 export class TemplateFormModule { }
