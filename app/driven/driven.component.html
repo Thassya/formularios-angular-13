@@ -26,7 +26,64 @@
       </div>
     </div>
 
-			<div class="col-sm-12">
+<div formGroupName="endereco">
+<div class="form-group">
+  <div class="col-sm-3" [ngClass]="aplicaCssErro('endereco.cep')">
+    <label for="cep">cep</label>
+    <input type="text" class="form-control" id="cep" formControlName="cep"
+     (blur)="consultaCEP()">
+    <app-campo-control-erro 
+      [mostrarErro]="verificaValidTouched('endereco.cep')" 
+      msgErro="CEP é obrigatório">
+      </app-campo-control-erro>   
+  </div>
+  <div class="col-sm-3">
+    <label for="numero">Número</label>
+    <input type="text" class="form-control" id="numero" formControlName="numero">
+    <app-campo-control-erro 
+      [mostrarErro]="verificaValidTouched('endereco.numero')" 
+      msgErro="número é obrigatório">
+      </app-campo-control-erro>
+    
+  </div>
+  <div class="col-sm-6">
+    <label for="complemento">Complemento</label>
+    <input type="text" class="form-control" id="complemento" formControlName="complemento">
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-12">
+    <label for="rua">Rua</label>
+    <input type="text" class="form-control" id="rua" formControlName="rua">
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-6" [ngClass]="aplicaCssErro('endereco.bairro')">
+    <label for="bairro">Bairro</label>
+    <input type="text" class="form-control" id="bairro" formControlName="bairro" >
+    	<app-campo-control-erro 
+      [mostrarErro]="verificaValidTouched('endereco.bairro')" 
+      msgErro="bairro é obrigatório">
+      </app-campo-control-erro>    
+  </div>
+  <div class="col-sm-3" [ngClass]="aplicaCssErro('endereco.cidade')">
+    <label for="cidade">Cidade</label>
+    <input type="text" class="form-control" id="cidade" formControlName="cidade">
+    <app-campo-control-erro 
+      [mostrarErro]="verificaValidTouched('endereco.cidade')" 
+      msgErro="cidade é obrigatório">
+      </app-campo-control-erro>       
+  </div>
+  <div class="col-sm-3">
+    <label for="estado">Estado</label>
+    <input type="text" class="form-control" id="estado" formControlName="estado">
+  </div>
+</div>
+</div>
+
+			<div class="col-sm-6">
 				<button type="submit" class="btn btn-primary">Enviar</button>
         		<button class="btn btn-secondary" (click)="resetar()">Cancelar</button>
 				<app-form-debug [form]="formulario"></app-form-debug>
