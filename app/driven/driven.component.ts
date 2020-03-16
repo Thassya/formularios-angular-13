@@ -22,10 +22,11 @@ export class DrivenComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder, 
     private http: Http,
-      private dropdownService: DropdownService) {}
+    private dropdownService: DropdownService) {}
 
   ngOnInit() {
-    this.dropdownService.getEstadosBr().subscribe(dados=>{
+    this.dropdownService.getEstadosBr()
+    .subscribe(dados=>{
       this.estados = dados;
       console.log(dados);
      } );
