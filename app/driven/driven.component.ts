@@ -27,10 +27,10 @@ export class DrivenComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.dropdownService.getEstadosBr().subscribe(dados => {
-      this.estados = dados;
-      console.log(dados);
-    });
+    // this.dropdownService.getEstadosBr().subscribe(dados => {
+    //   this.estados = dados;
+    //   console.log(dados);
+    // });
 
     this.formulario = this.formBuilder.group({
       nome: [
@@ -84,8 +84,7 @@ export class DrivenComponent implements OnInit {
 
   verificaValidTouched(campo: string) {
     return (
-      !this.formulario.get(campo).valid &&
-      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
+      !this.formulario.get(campo).valid && this.formulario.get(campo).dirty
     );
   }
   verificaEmailInvalido() {
@@ -102,17 +101,32 @@ export class DrivenComponent implements OnInit {
     };
   }
   consultaCEP() {
-    let cep = this.formulario.get("endereco.cep").value;
-
-    if (cep != null && cep !== "") {
+     let cep = this.formulario.get("endereco.cep").value;
+     if (cep != null && cep !== "") {
       this.cepService.consultaCEP(cep).subscribe(dados => {
-        console.log(dados);
         this.populaDadosForm(dados);
+        this.formulario.get('nome').setValue('Igor');
       });
     }
   }
+
   
-  limpaFormulario() {
+  populaDadosForm(dados) {
+     console.log(dados);
+
+    this.formulario.patchValue({
+      endereco: {
+        // cep: dados.cep,
+        complemento: dados.complemento,
+        rua: dados.logradouro,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
+      }
+    });
+  }
+
+  resetaFormulario() {
     this.formulario.patchValue({
       endereco: {
         complemento: null,
@@ -120,18 +134,6 @@ export class DrivenComponent implements OnInit {
         bairro: null,
         cidade: null,
         estado: null
-      }
-    });
-  }
-  populaDadosForm(dados) {
-    this.formulario.patchValue({
-      endereco: {
-        cep: dados.cep,
-        complemento: dados.complemento,
-        rua: dados.logradouro,
-        bairro: dados.bairro,
-        cidade: dados.localidade,
-        estado: dados.uf
       }
     });
   }
