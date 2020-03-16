@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormDebugComponent } from './form-debug/form-debug.component';
 import { CampoControlErroComponent } from './campo-control-erro/campo-control-erro.component';
 import { DropdownService } from './servicos/dropdown.service';
+import { ConsultaCepService } from './servicos/consulta-cep.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { DropdownService } from './servicos/dropdown.service';
     FormDebugComponent,
     CampoControlErroComponent
   ],
-  providers: [DropdownService]
+  providers: [DropdownService, ConsultaCepService]
 })
 export class SharedModule { }

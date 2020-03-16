@@ -3,6 +3,8 @@ import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
 import { Http } from "@angular/http";
 import "rxjs/add/operator/map";
 
+import { ConsultaCepService } from "../shared/servicos/consulta-cep.service";
+
 @Component({
   selector: "app-template-form",
   templateUrl: "./template-form.component.html",
@@ -22,7 +24,8 @@ export class TemplateFormComponent implements OnInit {
     .subscribe(dados => console.log(dados));
   }
 
-  constructor(private http: Http) {}
+  constructor(private http: Http,
+  private cepService: ConsultaCepService) {}
 
   ngOnInit() {}
   verificaValidTouched(campo) {
@@ -37,23 +40,12 @@ export class TemplateFormComponent implements OnInit {
 
   consultaCEP(cep, form) {
     cep = cep.replace(/\D/g, "");
-    if (cep != "") {
-      var validacep = /^[0-9]{8}$/;
-      if (validacep.test(cep)) {
-        
-        this.limpaFormulario(form);
-
-        this.http
-          .get(`https://viacep.com.br/ws/${cep}/json/`)
-          .map(dados => dados.json())
-          .subscribe(dados => {
-            this.populaDadosForm(dados, form);
-          },
-          form.form.reset()
-          );
-      }
+    if (cep != null && cep !== "") {
+     this.cepService.ConsultaCEP(cep).subscribe(dados => {
+            this.populaDadosForm(dados, form); });      
     }
   }
+  
   populaDadosForm(dados, formulario) {
 
     formulario.form.patchValue({

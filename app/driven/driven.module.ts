@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { DrivenComponent } from "./driven.component";
 import { DrivenService } from "./driven.service";
 import { SharedModule } from '../shared/shared.module';
+import { ConsultaCepService } from '../shared/servicos/consulta-cep.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [    
     DrivenComponent
   ],
-  providers: [DrivenService]
+  providers: [DrivenService, ConsultaCepService]
 })
 export class DrivenModule { }

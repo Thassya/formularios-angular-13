@@ -7,8 +7,8 @@ export class DropdownService {
 
   getEstadosBr() {
     return this.http
-      .get("./assets/estadosbr.json")
-      .map((res: Response) => res.json());
+      .get("estadosbr.json")
+      .map((res: Response) => this.extractData(res));
   }
   
   private extractData(res: Response) {

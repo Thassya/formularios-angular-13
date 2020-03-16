@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { TemplateFormComponent } from './template-form.component';
 import { SharedModule } from '../shared/shared.module';
+import { ConsultaCepService } from "../shared/servicos/consulta-cep.service";
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   declarations: [
     TemplateFormComponent
-  ]
+  ],
+  providers: [ConsultaCepService]
 })
 export class TemplateFormModule { }
